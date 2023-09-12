@@ -6,11 +6,11 @@ import Contact from "./pages/Contact"
 
 function App() {
   return (
-    <div className="border">
+    <div>
       <Routes>
         <Route path="/" element ={<Home />}/>
-        <Route path="/page1" element ={<About />}/>
-        <Route path="/page2" element ={<Contact />}/>
+        <Route path="/about" element ={<About />}/>
+        <Route path="/contact" element ={<Contact />}/>
       </Routes>
     </div>
   )

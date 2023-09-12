@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className="sticky top-[100vh] text-right h-fit">Footer</div>
   )
 }
 
