@@ -1,21 +1,21 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react';
 import { SongData } from '../../pages/Home';
 import {
   BsFillPlayCircleFill,
   BsFillPauseCircleFill,
   BsFillSkipStartCircleFill,
   BsFillSkipEndCircleFill,
-} from 'react-icons/bs'
+} from 'react-icons/bs';
 
 type PlayerProps = {
-  songs: SongData[]
-  isPlaying: boolean
-  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
-  currentSong: SongData
-  setCurrentSong: React.Dispatch<React.SetStateAction<SongData>>
-  audioElem: React.RefObject<HTMLAudioElement>
-  songProgress: number
-  setSongProgress: React.Dispatch<React.SetStateAction<number>>
+  songs: SongData[];
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  currentSong: SongData;
+  setCurrentSong: React.Dispatch<React.SetStateAction<SongData>>;
+  audioElem: React.RefObject<HTMLAudioElement>;
+  songProgress: number;
+  setSongProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const Player = ({
@@ -28,49 +28,57 @@ export const Player = ({
   songProgress,
   setSongProgress,
 }: PlayerProps) => {
+  const [songDuration, setSongDuration] = useState<number>(0);
+
+  useEffect(() => {
+    if (audioElem.current) {
+      audioElem.current.onloadedmetadata = () => {
+        setSongDuration(audioElem.current!.duration);
+      };
+    }
+  }, [currentSong]);
+
   const playPause = () => {
-    setIsPlaying(!isPlaying)
+    setIsPlaying(!isPlaying);
   }
 
-  const clickRef = useRef<HTMLDivElement>(null)
+  const clickRef = useRef<HTMLDivElement>(null);
 
   const checkWidth = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (clickRef.current && audioElem.current) {
-      const width = clickRef.current.clientWidth
-      const offset = e.nativeEvent.offsetX
+      const width = clickRef.current.clientWidth;
+      const offset = e.nativeEvent.offsetX;
 
-      const divProgress = (offset / width) * 100
-      audioElem.current.currentTime = (divProgress / 100) * (currentSong.length ?? 0)
+      const divProgress = (offset / width) * 100;
+      audioElem.current.currentTime = (divProgress / 100) * songDuration;
     }
   }
 
   const skipBack = () => {
-    const index = songs.findIndex((x: SongData) => x.title == currentSong.title)
-    if (index == 0) {
-      setCurrentSong(songs[songs.length - 1])
+    const index = songs.findIndex((x: SongData) => x.title === currentSong.title);
+    if (index === 0) {
+      setCurrentSong(songs[songs.length - 1]);
     } else {
-      setCurrentSong(songs[index - 1])
+      setCurrentSong(songs[index - 1]);
     }
-    setSongProgress(0)
-    setIsPlaying(false)
-    //audioElem.current.currentTime = 0
+    setSongProgress(0);
+    setIsPlaying(false);
   }
 
   const skipToNext = () => {
-    const index = songs.findIndex((x: SongData) => x.title == currentSong.title)
-    if (index == songs.length - 1) {
-      setCurrentSong(songs[0])
+    const index = songs.findIndex((x: SongData) => x.title === currentSong.title);
+    if (index === songs.length - 1) {
+      setCurrentSong(songs[0]);
     } else {
-      setCurrentSong(songs[index + 1])
+      setCurrentSong(songs[index + 1]);
     }
-    setSongProgress(0)
-    setIsPlaying(false)
-    //audioElem.current.currentTime = 0
+    setSongProgress(0);
+    setIsPlaying(false);
   }
 
   return (
-    <div className="w-[300px] sm:w-[400px] lg:w-[600px] p-4 border rounded-lg flex flex-col items-center justify-between bg-black text-white px-4 shadow-2xl">
-      <div className="p-4">
+    <div className="w-[300px] sm:w-[400px] lg:w-[600px] p-4 border rounded-lg flex flex-col items-center justify-between bg-black text-white px-4 shadow-2xl h-56">
+      <div className="p-4 text-center h-20 flex items-center">
         <p>{currentSong.title}</p>
       </div>
       <div className="w-full">
@@ -82,13 +90,10 @@ export const Player = ({
           <div
             style={{ width: `${songProgress}%` }}
             className="h-full bg-green-300 rounded-3xl transition-width"
-          >
-            {/*<audio src={currentSong.url} controls />*/}
-          </div>
+          ></div>
         </div>
       </div>
-      {/*Controls*/}
-      <div className="flex items-center ">
+      <div className="flex items-center">
         <BsFillSkipStartCircleFill
           className="m-4 hover:text-gray-500 transition transform duration-300 text-2xl cursor-pointer"
           onClick={skipBack}
@@ -110,7 +115,7 @@ export const Player = ({
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default Player
+export default Player;

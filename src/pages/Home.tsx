@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 import Header from '../components/Header'
-import { ButtonMailto } from '../components/ButtonMailTo'
+// import { ButtonMailto } from '../components/ButtonMailTo'
 import Player from '../components/Player/Player'
 import { songsdata } from '../components/Player/audio'
-import { BsFillEnvelopeFill } from 'react-icons/bs'
+// import { BsFillEnvelopeFill } from 'react-icons/bs'
 
 export interface SongData {
   title: string
@@ -55,7 +55,9 @@ function Home() {
       </h1>
       <main className="flex-1 flex flex-col items-center bg-slate-50 w-full">
         <div className="text-black">
-          {/*<h2 className="text-2xl mt-32 flex justify-center">Listen: {''}{currentSong.title}</h2>*/}
+          <h2 className="text-lg flex justify-center text-center">
+            Custom audio for your podcast.
+          </h2>
           <audio
             src={currentSong.url}
             ref={audioElem}
@@ -76,13 +78,13 @@ function Home() {
             {/*LOOK AT AND BUILD THIS
           https://blog.logrocket.com/building-audio-player-react/*/}
           </div>
-          <h3 className="text-2xl mt-16 md:mt-36 flex justify-center italic">
+          {/*<h3 className="text-2xl mt-16 md:mt-36 flex justify-center italic">
             <ButtonMailto
               icon={<BsFillEnvelopeFill />}
               label="info@podcusts.com"
               mailto="mailto:info@podcusts.com"
             />
-          </h3>
+  </h3>*/}
         </div>
       </main>
     </div>
