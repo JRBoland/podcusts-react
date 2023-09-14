@@ -50,7 +50,7 @@ function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       <Header />
-      <h1 className="max-h-screen h-96 flex justify-center items-end shadow-2xl">
+      <h1 className="max-h-screen h-72 md:h-96 flex justify-center items-end shadow-2xl">
         PODCUSTS
       </h1>
       <main className="flex-1 flex flex-col items-center bg-slate-50 w-full">
@@ -63,7 +63,7 @@ function Home() {
             ref={audioElem}
             onTimeUpdate={onPlaying}
           />
-          <div className="mt-24 md:mt-36 flex justify-center">
+          <div className="mt-24 mb-24 md:mt-36 flex justify-center">
             <Player
               songs={songs}
               isPlaying={isPlaying}
