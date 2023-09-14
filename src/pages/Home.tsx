@@ -63,7 +63,7 @@ function Home() {
             ref={audioElem}
             onTimeUpdate={onPlaying}
           />
-          <div className="mt-24 mb-24 md:mt-36 flex justify-center">
+          <div className="mt-16 mb-24 md:mt-36 flex justify-center">
             <Player
               songs={songs}
               isPlaying={isPlaying}
