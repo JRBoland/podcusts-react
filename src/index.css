@@ -7,11 +7,11 @@
 }*/
 
 body {
-  font-family: system-ui;
+  font-family: 'Work Sans', system-ui;
   font-size: 1.125rem;
   line-height: 1.5;
   background-color: black;
-  color: white;
+  color: #F8F8F8;
 }
 
 main {

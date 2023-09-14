@@ -1,5 +1,6 @@
 import Header from "../components/Header"
 import { ButtonMailto } from "../components/ButtonMailTo";
+import { BsFillEnvelopeFill } from 'react-icons/bs'
 
 function Contact() {
   
@@ -9,7 +10,8 @@ function Contact() {
       <main className="flex-1 flex flex-col items-center justify-center">
       <h1 className="text-2xl hidden">Contact</h1>
       <h2 className="text-2xl">Get in touch:</h2>
-      <ButtonMailto label="info@podcusts.com" mailto="mailto:info@podcusts.com" />
+      <ButtonMailto icon={<BsFillEnvelopeFill />}
+      label="info@podcusts.com" mailto="mailto:info@podcusts.com" />
       </main>
     </div>
   )

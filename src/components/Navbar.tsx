@@ -5,15 +5,15 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <nav className="top-0 flex justify-between items-center w-full p-4">
-      <Link className="text-xl font-bold" to="/">Podcusts</Link>
+      <Link className="text-xl font-bold hover:text-gray-500 transition transform duration-300" to="/">Podcusts</Link>
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex space-x-8">
         <li>
-          <NavLink className="text-gray-700 hover:text-black" to="/about">About</NavLink>
+          <NavLink className="text-gray-700 hover:text-white transition transform duration-300" to="/about">About</NavLink>
         </li>
         <li>
-          <NavLink className="text-gray-700 hover:text-black" to="/contact">Contact</NavLink>
+          <NavLink className="text-gray-700 hover:text-white transition transform duration-300" to="/contact">Contact</NavLink>
         </li>
       </ul>
 
