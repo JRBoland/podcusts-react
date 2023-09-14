@@ -6,7 +6,7 @@ import intro5 from '/assets/media/intro_investing_in_earth.mp3'
 
 export const songsdata = [
   {
-    "title": "Intro - Foreigners Talk",
+    "title": "Intro & Outro - Foreigners Talk",
     "url": intro1,
     // To include in the future:
     // "description": "lorem ipsum"
